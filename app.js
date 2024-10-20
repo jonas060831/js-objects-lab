@@ -303,3 +303,14 @@ game.gyms.forEach( gym => {
 })
 
 
+/*
+Exercise 16
+1. Log the entire `game` object to the console. Take a moment to review the changes you've made throughout the exercises.
+
+
+Solve Exercise 16 here:
+*/
+
+
+
+console.log(game)
