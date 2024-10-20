@@ -76,6 +76,24 @@ Exercise 4
 Solve Exercise 4 here:
 */
 
-//pikachu number 1
-game.party.push(pokemon[24])
+//pikachu number 1 
+const pikachu = pokemon[24] //electric
+game.party.push(pikachu)
 
+/*
+Exercise 5
+1. Choose three more Pokémon from the `pokemon` array and add them to your party.
+2. Consider different attributes like 'type' or 'HP' for your selection. Which array method will you use to add them?
+
+
+Solve Exercise 5 here:
+*/
+
+const mewtwo = pokemon[149] //psychic
+const chansey = pokemon[112] //normal
+const snorlax = pokemon[142] //normal
+
+game.party.unshift(mewtwo, chansey) //added to index 0
+game.party.splice(1,0,snorlax) //added to index 1 and did not delete any other pokemon
+
+console.log(game)
