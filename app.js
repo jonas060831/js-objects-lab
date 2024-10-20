@@ -142,3 +142,45 @@ Solve Exercise 8 here:
 game.party.forEach( pokemon_in_party => {
     console.log(pokemon_in_party.name)
 })
+
+/*
+Exercise 9
+1. Can you print out all the starter Pokémon from the `pokemon` array?
+2. Think about how you can identify a starter Pokémon and then log their names.
+
+
+Solve Exercise 9 here:
+*/
+
+pokemon.forEach( starter_pokemon => {
+
+    //just the name??
+    if(starter_pokemon.starter) console.log(starter_pokemon.name)
+})
+
+/*
+Exercise 10
+Create a method called `catchPokemon` and add it to the `game` object. You should not need to edit the original game object directly. This method should:
+  - Accept an object as a parameter called `pokemonObj`
+  - Add the `pokemonObj` to the `game.party` array.
+  - not return anything
+
+After writing this method, call it and pass in a Pokemon object of your choice from the `pokemon` data to catch it.
+
+Solve Exercise 10 here:
+*/
+
+
+//create a method called catchPokemon and add it to the game object
+//this method accept an object type named pokemonObj
+game.catchPokemon = function(pokemonObj) {
+
+    //add the pokemonObj to the game.party array
+    game.party.push(pokemonObj)
+    //and dont return anything
+}
+
+//pokemon object of my choice
+const gyrados = pokemon[129]
+//call it
+game.catchPokemon(gyrados)
