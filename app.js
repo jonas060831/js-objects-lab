@@ -376,3 +376,47 @@ game.catchPokemon(pokemon[130])
 //then log the game items
 console.log(game.items)
 
+
+/*
+Exercise 19
+Copy the `catchPokemon` method that you just wrote above, and paste it below. The time has come to make it so that we cannot catch a Pokemon when we do not have any pokeballs to catch it with. 
+
+Modify the method so that if there are no pokeballs a message will be displayed that there are not enough pokeballs to catch the desired Pokemon.
+
+Also, ensure that the Pokemon isn't added to the `game.party` or the `game.collection`.
+
+Solve Exercise 19 here:
+*/
+
+//The time has come to make it so that we cannot catch a Pokemon when we do not have any pokeballs to catch it with. 
+//Modify the method so that if there are no pokeballs a message will be displayed that there are not enough pokeballs to catch the desired Pokemon.
+//Also, ensure that the Pokemon isn't added to the `game.party` or the `game.collection`.
+
+//copy catch pokemon decrease the pokeball quantity
+game.catchPokemon = function(pokemonObj) {
+
+    if (game.items[1].quantity >= 1) {
+        //add the pokemonObj to the game.party array
+    game.party.push(pokemonObj)
+
+    //reduce pokeball
+    game.items.forEach( item => {
+
+        //its ok the have a negative pokeball
+        if(item.name === 'pokeball') item.quantity--
+    })
+
+    if(game.party.length > 6) {
+        
+        //sort then reassign in descending order
+        game.party = game.party.sort((pokemonx, pokemony) =>  pokemony.hp - pokemonx.hp)
+        //remove the lowest hp pokemon considered to be the weakest
+        game.collection.push(game.party.pop())
+    }
+    } else {
+        console.log('there are not enough pokeballs to catch the desired Pokemon')
+    }
+    
+
+    //and dont return anything
+}
