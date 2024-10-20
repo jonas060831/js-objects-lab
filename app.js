@@ -96,4 +96,17 @@ const snorlax = pokemon[142] //normal
 game.party.unshift(mewtwo, chansey) //added to index 0
 game.party.splice(1,0,snorlax) //added to index 1 and did not delete any other pokemon
 
-console.log(game)
+/*
+Exercise 6
+1. Set the `completed` property to true for gyms with a difficulty below 3.
+2. Think about how you'd loop through the `gyms` array to check and update the `completed` property.
+
+
+Solve Exercise 6 here:
+*/
+
+game.gyms.forEach( gym => {
+
+    if(gym.difficulty <= 3) gym.completed = true
+})
+
