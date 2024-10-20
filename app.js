@@ -184,3 +184,5 @@ game.catchPokemon = function(pokemonObj) {
 const gyrados = pokemon[129]
 //call it
 game.catchPokemon(gyrados)
+
+console.log(game)
