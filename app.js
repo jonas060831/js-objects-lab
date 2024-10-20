@@ -52,3 +52,6 @@ as needed to help you complete the rest of the lab.
 */
 
 console.log(pokemon[58])
+
+//Exercise 2
+//console.log(game)
