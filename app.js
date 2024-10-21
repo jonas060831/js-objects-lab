@@ -263,7 +263,6 @@ game.gymStatus = function() {
     
 
     this.gyms.forEach( gym => {
-
        if(gym.completed) gymTally.completed++
        else gymTally.incomplete++
     })
@@ -286,7 +285,7 @@ This method should:
 Solve Exercise 14 here:
 */
 
-game.partyCount = function() {
+game.partyCount = () => {
     return this.party.length
 }
 
@@ -374,7 +373,7 @@ game.catchPokemon = function(pokemonObj) {
 game.catchPokemon(pokemon[130])
 
 //then log the game items
-console.log(game.items)
+console.log('answer: 18', game.items)
 
 
 /*
@@ -397,30 +396,34 @@ game.catchPokemon = function(pokemonObj) {
 
     if (game.items[1].quantity >= 1) {
         //add the pokemonObj to the game.party array
-    game.party.push(pokemonObj)
+        game.party.push(pokemonObj)
 
-    //reduce pokeball
-    game.items.forEach( item => {
+        //reduce pokeball
+        game.items.forEach( item => {
 
-        //its ok the have a negative pokeball
-        if(item.name === 'pokeball') item.quantity--
-    })
+            //its ok the have a negative pokeball
+            if(item.name === 'pokeball') item.quantity--
+        })
 
-    if(game.party.length > 6) {
-        
-        //sort then reassign in descending order
-        game.party = game.party.sort((pokemonx, pokemony) =>  pokemony.hp - pokemonx.hp)
-        //remove the lowest hp pokemon considered to be the weakest
-        game.collection.push(game.party.pop())
-    }
+        if(game.party.length > 6) {
+            
+            //sort then reassign in descending order
+            game.party = game.party.sort((pokemonx, pokemony) =>  pokemony.hp - pokemonx.hp)
+            //remove the lowest hp pokemon considered to be the weakest
+            game.collection.push(game.party.pop())
+        }
     } else {
         console.log('there are not enough pokeballs to catch the desired Pokemon')
     }
+    
     
 
     //and dont return anything
 }
 
+game.catchPokemon(pokemon[130])
+
+console.log('answer 19:', game)
 
 /*
 Exercise 20
@@ -433,34 +436,38 @@ If there is not a match, then return a string noting that the selected Pokemon d
 Solve Exercise 20 here:
 */
 
-
+const capitalizeTheFirstLetter = str => {
+   
+    let capitalize =  str.charAt(0).toUpperCase() + str.slice(1);
+    return capitalize
+} 
 
 game.catchPokemon = function(pokemonName) {
-
+    //once we have the user input we can manipulate it and make all letter small
     let lowerCaseNamePokemon = pokemonName.toLowerCase()
-
-    let pokemonObj = pokemon.find(pok => pok.name === lowerCaseNamePokemon.capitalize())
+    //then to match the one on the data.js file we will capitalize the first letter
+    let pokemonObj = pokemon.find(pok => pok.name === capitalizeTheFirstLetter(lowerCaseNamePokemon))
 
     if(pokemonObj) {
         if (game.items[1].quantity >= 1) {
 
             //add the pokemonObj to the game.party array
-        game.party.push(pokemonObj)
-    
-        //reduce pokeball
-        game.items.forEach( item => {
-    
-            //its ok the have a negative pokeball
-            if(item.name === 'pokeball') item.quantity--
-        })
-    
-        if(game.party.length > 6) {
-            
-            //sort then reassign in descending order
-            game.party = game.party.sort((pokemonx, pokemony) =>  pokemony.hp - pokemonx.hp)
-            //remove the lowest hp pokemon considered to be the weakest
-            game.collection.push(game.party.pop())
-        }
+            game.party.push(pokemonObj)
+        
+            //reduce pokeball
+            game.items.forEach( item => {
+        
+                //its ok the have a negative pokeball
+                if(item.name === 'pokeball') item.quantity--
+            })
+        
+            if(game.party.length > 6) {
+                
+                //sort then reassign in descending order
+                game.party = game.party.sort((pokemonx, pokemony) =>  pokemony.hp - pokemonx.hp)
+                //remove the lowest hp pokemon considered to be the weakest
+                game.collection.push(game.party.pop())
+            }
         } else {
             console.log('there are not enough pokeballs to catch the desired Pokemon')
         }
@@ -469,8 +476,54 @@ game.catchPokemon = function(pokemonName) {
         console.log('the selected Pokemon does not exist')
     }
 
-    
-    
-
     //and dont return anything
 }
+game.catchPokemon('PikAcHu')
+game.catchPokemon('Pidgeot')
+
+console.log(game)
+
+/*
+Exercise 21
+Dynamically construct an object with the existing `pokemon` data sorted by the different pokemon types. The object will have this structure:
+
+{
+  grass: [
+    { number: 1, name: 'Bulbasaur', type: 'grass', hp: 45, starter: true },
+    { number: 2, name: 'Ivysaur', type: 'grass', hp: 60, starter: false },
+    { number: 3, name: 'Venusaur', type: 'grass', hp: 80, starter: false },
+    * more grass type Pokemon objects...
+  ],
+  fire: [
+    { number: 4, name: 'Charmander', type: 'fire', hp: 39, starter: true },
+    * more fire type Pokemon objects...
+  ],
+  water: [
+    * water type Pokemon objects...
+  ],
+  * etc... until there is an array for every Pokemon type!
+}
+
+Log the object when it's constructed.
+
+Solve Exercise 21 here:
+*/
+
+const groupedByType = (any_pokemon_array) => {
+    return any_pokemon_array.reduce((acc, currentPokemon) => {
+        const type = currentPokemon.type;
+        
+        //initialize the accumulator if it hasnt been 
+        if (!acc[type]) {
+          acc[type] = [];
+        }
+        //if it exist then simply put the current pokemon
+        acc[type].push(currentPokemon);
+        
+        return acc;
+      }, {});
+}
+
+
+
+console.dir(groupedByType(pokemon))
